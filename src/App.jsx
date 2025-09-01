@@ -5,6 +5,7 @@ import Header from './components/Header'
 import ChatInput from './components/InputBox'
 import axios from 'axios';
 import Loader from './components/Loader';
+import Footer from './components/Footer';
 
 function App() {
 
@@ -31,11 +32,25 @@ function App() {
   
 
   return (
-    <div className='flex flex-col justify-center items-center'>
+    <div className='flex flex-col h-screen justify-center items-center px-2'>
      <Header/>
-     <ChatWindow messages={messages}/>
-      {loading && <Loader />}
-     <ChatInput onSend={handleSend}/>
+
+     <div className='flex-1 overflow-y-auto flex flex-col items-center w-full '>
+       <ChatWindow messages={messages}/>
+       {loading && <Loader />}
+     </div>
+     
+     
+      <div
+        className={`transition-all w-full duration-700 px-2 ${
+          messages.length === 0
+            ? "absolute inset-x-0 bottom-1/2 translate-y-1/2 flex justify-center"
+            : "relative flex justify-center pb-4 md:pb-6"
+        }`}
+      >
+        <ChatInput onSend={handleSend} />
+      </div>
+     <Footer/>
     </div>
   )
 }
