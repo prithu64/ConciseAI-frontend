@@ -9,7 +9,7 @@ import Loader from './components/Loader';
 function App() {
 
   const [messages, setMessages] = useState([]);
-  const  [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleSend = async (text) => {
     try {
@@ -28,7 +28,6 @@ function App() {
       setLoading(false);
     }
   }
-  
   
 
   return (
