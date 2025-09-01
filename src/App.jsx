@@ -21,7 +21,12 @@ function App() {
     })
 
     const botReply = response.data.reply;
-    setMessages((prev)=>[...prev, { text:botReply, type: "bot" }]);
+
+    if(botReply === undefined){
+      setMessages((prev) => [...prev, { text: "Oops! Something went wrong. try again", type: "bot" }]);
+    }else{
+      setMessages((prev)=>[...prev, { text:botReply, type: "bot" }]);
+    }
   } catch (error){
       console.log("error : ",error);
       setMessages((prev) => [...prev, { text: "Oops! Something went wrong.", type: "bot" }]);
