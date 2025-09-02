@@ -3,7 +3,17 @@ import { FaCheckCircle } from "react-icons/fa";
 import { useState } from "react";
 
 export default function ChatWindow({ messages }) {
-  const [checkMark,setCheck] = useState(false);
+  const [copiedIndex,setIndex] = useState(null);
+
+  const handleCopy = (text,index)=>{
+     navigator.clipboard.writeText(text);
+     setIndex(index);
+
+     setTimeout(()=>{
+      setIndex(null)
+     },1000)
+  };
+
   return (
     <div className={`w-full max-w-3xl ${messages.length === 0 ? "md:mt-48 mt-53":"h-[full] "}  bg-white  rounded  p-2 flex flex-col overflow-y-auto`}>
       {messages.length === 0 ? (
@@ -19,11 +29,7 @@ export default function ChatWindow({ messages }) {
                 msg.type === "bot" && (
                   <div className="cursor-pointer flex items-baseline-last ml-1">
                     {
-                      checkMark ? <FaCheckCircle size={12} color="gray"/> :   <IoCopy onClick={()=>{
-                      navigator.clipboard.writeText(msg.text)
-                      setCheck(true);
-                      setTimeout(()=>{setCheck(false)},1000)
-                      }} color="gray" size={12}/>
+                      copiedIndex === id ? <FaCheckCircle size={12} color="gray"/> :   <IoCopy onClick={()=>handleCopy(msg.text,id)} color="gray" size={12}/>
                     }
                   </div>
                 )
