@@ -5,8 +5,8 @@ export default function Header() {
     <div className="w-full">
       <div className="flex justify-between items-center max-w-5xl mx-auto py-4">
         
-      <div className="flex items-center text-black">
-        <AiFillThunderbolt size={25} className="cursor-pointer"/>
+      <div className="flex items-center text-black transition-transform duration-300 hover:scale-105 cursor-pointer">
+        <AiFillThunderbolt size={25} />
         <h1 className="text-xl font-semibold">ConciseAI</h1>
       </div>
       
