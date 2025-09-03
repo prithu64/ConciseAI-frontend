@@ -11,6 +11,7 @@ function App() {
 
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [mode,setMode] = useState(null);
 
   const handleSend = async (text) => {
     try {
@@ -53,7 +54,7 @@ function App() {
             : "relative flex justify-center pb-4 md:pb-6"
         }`}
       >
-        <ChatInput onSend={handleSend} />
+        <ChatInput onSend={handleSend} mode={mode}/>
       </div>
      <Footer/>
     </div>
