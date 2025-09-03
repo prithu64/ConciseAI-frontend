@@ -11,14 +11,15 @@ function App() {
 
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [mode,setMode] = useState(null);
+  const [mode,setMode] = useState("professional");
 
   const handleSend = async (text) => {
     try {
     setMessages([...messages, { text, type: "user" }]);
     setLoading(true);
     const response = await axios.post("http://localhost:3000/api/v1/ai/getReply",{
-      query : text
+      query : text,
+      mode
     })
 
     const botReply = response.data.reply;
@@ -54,7 +55,7 @@ function App() {
             : "relative flex justify-center pb-4 md:pb-6"
         }`}
       >
-        <ChatInput onSend={handleSend} mode={mode}/>
+        <ChatInput onSend={handleSend} setMode={setMode}/>
       </div>
      <Footer/>
     </div>

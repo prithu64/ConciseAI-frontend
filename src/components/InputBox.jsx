@@ -2,9 +2,10 @@ import { FaCircleArrowUp } from "react-icons/fa6";
 import { RiUserSettingsFill } from "react-icons/ri";
 import { useState } from "react";
 
-export default function ChatInput({ onSend , mode}) {
+export default function ChatInput({ onSend , setMode}) {
   const [input, setInput] = useState("");
   const [showMode,setShowMode] = useState(false)
+  const [modeEmoji,setEmoji] = useState("🤓")
 
   const handleSend = () => {
     if (!input.trim()) return;
@@ -30,7 +31,7 @@ export default function ChatInput({ onSend , mode}) {
       />
       
        {/*mode button*/}
-       <div className="relative flex ">
+       <div className="relative flex border border-black/50 my-2 rounded-full">
         <button
         onClick={handleMode}
         className="px-2  text-black cursor-pointer hover:scale-110 transition duration-300"
@@ -39,12 +40,27 @@ export default function ChatInput({ onSend , mode}) {
       </button>
         
            {/*mode list */}
-           <ul className={`absolute bg-gray-700/50 backdrop-blur-lg text-white rounded-sm w-40 shadow-lg border p-2 border-gray-200 ${showMode ? "opacity-100 scale-100":"opacity-0 scale-95 pointer-events-none"} transition-all duration-200  right-0 -top-18 text-sm text-black/60 border p-2`}>
-             <li>Professional</li>
-             <li>Chill Dude</li>
-             <li>Girly Girl</li>
+           <ul className={`absolute bg-gray-700/50 backdrop-blur-lg text-white rounded-sm w-40 shadow-lg border  border-gray-200 ${showMode ? "opacity-100 scale-100":"opacity-0 scale-95 pointer-events-none"} transition-all duration-200  right-0 -top-18 text-sm text-black/60 border p-2`}>
+             <li onClick={()=>{
+              setEmoji("🤓")
+              setMode("professional")
+              }} className="border-b hover:text-black hover:bg-white cursor-pointer">Professional</li>
+             <li onClick={()=>{
+              setEmoji("😎")
+              setMode("Chill Dude")
+              }} className="border-b hover:text-black hover:bg-white cursor-pointer">Chill Dude</li>
+             <li onClick={()=>{
+              setEmoji("💅")
+              setMode("Girly Girl")
+              }} className="hover:text-black hover:bg-white cursor-pointer">Girly Girl</li>
            </ul>
         
+       <button
+        onClick={handleMode}
+        className="px-2 text-base text-black cursor-pointer"
+      >
+       {modeEmoji}
+      </button>
        
        </div>
       
