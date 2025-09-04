@@ -15,9 +15,9 @@ export default function ChatWindow({ messages }) {
   };
 
   return (
-    <div className={`w-full max-w-3xl ${messages.length === 0 ? "md:mt-48 mt-53":"h-[full] "}  bg-white  rounded  p-2 flex flex-col overflow-y-auto`}>
+    <div className={`w-full max-w-3xl ${messages.length === 0 ? "md:mt-48 mt-53":"h-[full] "}  bg-transparent  rounded  p-2 flex flex-col overflow-y-auto`}>
       {messages.length === 0 ? (
-        <p className="bg-gradient-to-r from-slate-400 to-zinc-800 bg-clip-text text-transparent p-2 font-semibold text-center text-3xl md:text-4xl lg:text-5xl ">What you thinking ?</p>
+        <p className="bg-gradient-to-r from-slate-400 to-zinc-800  dark:bg-gradient-to-r dark:from-white dark:to-gray-400 bg-clip-text text-transparent p-2 font-semibold text-center text-3xl md:text-4xl lg:text-5xl ">What you thinking ?</p>
       ) : (
         messages.map((msg, id) => (
           <div key={id} className={`mb-2 flex text-sm ${msg.type === 'user' ? 'justify-end' : 'justify-start'}`}>

@@ -12,6 +12,7 @@ function App() {
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
   const [mode,setMode] = useState("professional");
+  const [isDark,setDark] = useState("dark")
 
   const handleSend = async (text) => {
     try {
@@ -39,8 +40,8 @@ function App() {
   
 
   return (
-    <div className='flex flex-col h-screen justify-center items-center px-2'>
-     <Header/>
+    <div className={`flex flex-col h-screen justify-center items-center px-2 ${isDark} dark:bg-black/90`}>
+     <Header setDark={setDark} isDark={isDark}/>
 
      <div className='flex-1 overflow-y-auto flex flex-col items-center w-full '>
        <ChatWindow messages={messages}/>
